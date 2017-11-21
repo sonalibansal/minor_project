@@ -29,15 +29,16 @@ def make_Dictionary(train_dir):
     for item in list_to_remove:
         if item.isalpha() == False: 
             del dictionary[item]
-        elif len(item) == 1:
+        elif len(item) == 1 or len(item)==2 or len(item)==3:
             del dictionary[item]
-    dictionary = dictionary.most_common(12)
+        #elif len(item
+    dictionary = dictionary.most_common(20)
     print dictionary
     return dictionary
     
 def extract_features(mail_dir): 
     files = [os.path.join(mail_dir,fi) for fi in os.listdir(mail_dir)]
-    features_matrix = np.zeros((len(files),12))
+    features_matrix = np.zeros((len(files),20))
     docID = 0;
     for fil in files:
       with open(fil) as fi:
@@ -47,10 +48,10 @@ def extract_features(mail_dir):
             for word in words:
               wordID = 0
               for i,d in enumerate(dictionary):
-		print d
+		#print d
 
-		print d[0]
-		print d[1]
+		#print d[0]
+		#print d[1]
                 if d[0] == word:
                   wordID = i
                   features_matrix[docID,wordID] = words.count(word)
