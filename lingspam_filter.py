@@ -11,6 +11,10 @@ from collections import Counter
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.svm import LinearSVC
 from sklearn.metrics import confusion_matrix
+from sklearn.feature_extraction.text import CountVectorizer
+
+
+
 
 def make_Dictionary(train_dir):
     emails = [os.path.join(train_dir,f) for f in os.listdir(train_dir)]    
@@ -31,13 +35,13 @@ def make_Dictionary(train_dir):
             del dictionary[item]
         elif len(item) == 1:
             del dictionary[item]
-    dictionary = dictionary.most_common(12)
-    print dictionary
+    dictionary = dictionary.most_common(20)
+   # print dictionary
     return dictionary
     
 def extract_features(mail_dir): 
     files = [os.path.join(mail_dir,fi) for fi in os.listdir(mail_dir)]
-    features_matrix = np.zeros((len(files),12))
+    features_matrix = np.zeros((len(files),20))
     docID = 0;
     for fil in files:
       with open(fil) as fi:
@@ -47,16 +51,14 @@ def extract_features(mail_dir):
             for word in words:
               wordID = 0
               for i,d in enumerate(dictionary):
-		print d
-
-		print d[0]
-		print d[1]
                 if d[0] == word:
                   wordID = i
                   features_matrix[docID,wordID] = words.count(word)
         docID = docID + 1     
     return features_matrix
     
+
+
 # Create a dictionary of words with its frequency
 
 train_dir = 'travel-nontravel/train-mails'
@@ -78,6 +80,8 @@ model2.fit(train_matrix,train_labels)
 
 # Test the unseen mails for Spam
 
+#print model1
+
 test_dir = 'travel-nontravel/test-mails'
 test_matrix = extract_features(test_dir)
 test_labels = np.zeros(60)
@@ -86,7 +90,37 @@ test_labels[29:59] = 1
 result1 = model1.predict(test_matrix)
 result2 = model2.predict(test_matrix)
 
+
 print confusion_matrix(test_labels,result1)
 print confusion_matrix(test_labels,result2)
+
+def extract_features_for_single_doc(doc_path): 
+    features_matrix = np.zeros((1,20), dtype = np.int)
+    f=open(doc_path, "r")
+    if f.mode == 'r': 
+      contents =f.read()
+      #print contents
+
+      words = contents.split()
+      for word in words:
+        wordID = 0
+        for i,d in enumerate(dictionary):
+          if d[0] == word:
+            wordID = i
+            features_matrix[wordID] = words.count(word)
+      
+    return features_matrix
+
+test_dir1 = 'travel-nontravel/tr2.txt'
+test_matrix1 = extract_features_for_single_doc(test_dir1)
+
+result3 = model1.predict(test_matrix1)
+if result3==0:
+	print "non travel"
+else:
+	print "travel"
+
+
+
 
 
