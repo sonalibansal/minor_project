@@ -5,7 +5,8 @@ from sklearn.naive_bayes import MultinomialNB
 from sklearn.svm import LinearSVC
 from sklearn.metrics import confusion_matrix
 from sklearn.feature_extraction.text import CountVectorizer
-
+import re
+import datefinder
 
 
 
@@ -106,7 +107,7 @@ def extract_features_for_single_doc(doc_path):
       
     return features_matrix
 
-test_doc = 'travel-nontravel/ntr39.txt'
+test_doc = 'travel-nontravel/tr2.txt'
 doc_matrix = extract_features_for_single_doc(test_doc)
 
 result3 = model1.predict(doc_matrix)
@@ -114,7 +115,16 @@ if result3==0:
 	print "non travel"
 else:
 	print "travel"
+print str(result3)+"\n"
 
+if result3==1:
+    f=open(test_doc, "r")
+    if f.mode == 'r': 
+      contents =f.read()
+      print contents
+      matches = datefinder.find_dates(contents)
+      for match in matches:
+          print match
 
 
 
