@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Jan 27 22:53:50 2017
-
-@author: Abhijeet Singh
-"""
-
 import os
 import numpy as np
 from collections import Counter
@@ -33,10 +26,11 @@ def make_Dictionary(train_dir):
     for item in list_to_remove:
         if item.isalpha() == False: 
             del dictionary[item]
-        elif len(item) == 1:
+        elif len(item) == 1 or len(item)==2 or len(item)==3:
             del dictionary[item]
+
     dictionary = dictionary.most_common(20)
-   # print dictionary
+  
     return dictionary
     
 def extract_features(mail_dir): 
@@ -51,6 +45,7 @@ def extract_features(mail_dir):
             for word in words:
               wordID = 0
               for i,d in enumerate(dictionary):
+
                 if d[0] == word:
                   wordID = i
                   features_matrix[docID,wordID] = words.count(word)
