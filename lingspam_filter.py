@@ -102,14 +102,14 @@ def extract_features_for_single_doc(doc_path):
         for i,d in enumerate(dictionary):
           if d[0] == word:
             wordID = i
-            features_matrix[wordID] = words.count(word)
+            features_matrix[0,wordID] = words.count(word)
       
     return features_matrix
 
-test_dir1 = 'travel-nontravel/tr2.txt'
-test_matrix1 = extract_features_for_single_doc(test_dir1)
+test_doc = 'travel-nontravel/ntr39.txt'
+doc_matrix = extract_features_for_single_doc(test_doc)
 
-result3 = model1.predict(test_matrix1)
+result3 = model1.predict(doc_matrix)
 if result3==0:
 	print "non travel"
 else:
