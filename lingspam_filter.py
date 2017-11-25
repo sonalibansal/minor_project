@@ -7,7 +7,8 @@ from sklearn.metrics import confusion_matrix
 from sklearn.feature_extraction.text import CountVectorizer
 import re
 import datefinder
-
+from commonregex import CommonRegex
+import geograpy
 
 
 def make_Dictionary(train_dir):
@@ -122,9 +123,17 @@ if result3==1:
     if f.mode == 'r': 
       contents =f.read()
       print contents
-      matches = datefinder.find_dates(contents)
-      for match in matches:
-          print match
+      #matches = datefinder.find_dates(contents)
+      #for match in matches:
+          #print match
+      parsed_text = CommonRegex(contents)
+      print(parsed_text.times)
+      print(parsed_text.dates)
+      print(parsed_text.street_addresses)
+      print(parsed_text.btc_addresses)
+      places = geograpy.get_place_context(text=content)
+      print places.region
+      print places.cities
 
 
 
