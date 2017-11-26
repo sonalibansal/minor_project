@@ -9,6 +9,7 @@ import re
 import datefinder
 from commonregex import CommonRegex
 import geograpy
+#from postal.parser import parse_address
 
 
 def make_Dictionary(train_dir):
@@ -131,9 +132,13 @@ if result3==1:
       print(parsed_text.dates)
       print(parsed_text.street_addresses)
       print(parsed_text.btc_addresses)
-      places = geograpy.get_place_context(text=content)
-      print places.region
-      print places.cities
+      #places = geograpy.get_place_context(text=contents)
+      #print(places.region)
+      #print(places.cities)
+      #regexp = "[0-9]{1,3} .+, .+, [A-Z]{2} [0-9]{5}"
+      #address = re.findall(regexp,contents)
+      #print(address)
+      #print parse_address(contents)
 
 
 
