@@ -19,6 +19,7 @@ def make_Dictionary(train_dir):
         with open(mail) as m:
             for i,line in enumerate(m):
                 if i == 0:
+                    #line=line.lower()
                     words = line.split()
 		    
                     all_words += words
@@ -118,7 +119,6 @@ if result3==0:
 else:
 	print "travel"
 print str(result3)+"\n"
-
 if result3==1:
     f=open(test_doc, "r")
     if f.mode == 'r': 
@@ -132,14 +132,7 @@ if result3==1:
       print(parsed_text.dates)
       print(parsed_text.street_addresses)
       print(parsed_text.btc_addresses)
-      #places = geograpy.get_place_context(text=contents)
-      #print(places.region)
-      #print(places.cities)
-      #regexp = "[0-9]{1,3} .+, .+, [A-Z]{2} [0-9]{5}"
-      #address = re.findall(regexp,contents)
-      #print(address)
-      #print parse_address(contents)
-
+      
 
 
 

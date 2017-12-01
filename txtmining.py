@@ -6,7 +6,7 @@ import nltk
 #nltk.download('punkt')
 #nltk.download('averaged_perceptron_tagger')
 #nltk.download('maxent_ne_chunker')
-
+import pymysql
 
 test_doc = 'travel-nontravel/tr2.txt'
 f=open(test_doc, "r")
@@ -14,7 +14,10 @@ contents =f.read()
 print contents
 parsed_text = CommonRegex(contents)
 print(parsed_text.times)
-print(parsed_text.dates)
+time = parsed_text.times
+print(time[0])
+date = parsed_text.dates
+print(date[0])
 print(parsed_text.street_addresses)
 print(parsed_text.btc_addresses)
       #places = geograpy.get_place_context(text=contents)
@@ -43,6 +46,11 @@ if not address:
 
 print "\n"		
 print address
+con = pymysql.connect(host='localhost',database='minorproject', user='root',charset='utf8mb4')
+cur = con.cursor()
+sql_insert = "INSERT INTO extract(date,address) values (%s,%s)"
+cur.execute(sql_insert,(date[0],address[0]))
+con.commit()
 
 ###
 #312 N whatever st., New York NY 10001
