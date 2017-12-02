@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `extract` (
   `userid` int(11) NOT NULL DEFAULT '101',
-  `emailno` int(11) NOT NULL,
+  `emailno` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `date` varchar(50) NOT NULL,
   `address` text NOT NULL,
   `time` varchar(50) DEFAULT NULL
@@ -39,11 +39,11 @@ CREATE TABLE `extract` (
 --
 
 INSERT INTO `extract` (`userid`, `emailno`, `date`, `address`, `time`) VALUES
-(101, 1, '14 January 017', 'Delhi, India', ''),
-(101, 2, '10 January 2017', 'Kashmere Gate ,Delhi, India', ''),
-(101, 3, '19 May 2017', 'Rajouri Garden ,Delhi, India', ''),
-(101, 4, '5 July 2017', 'Kilash Colony ,Delhi, India', ''),
-(101, 5, '10 January 2017', 'Lal Qila ,Delhi, India', '');
+(1, 1, '14 January 017', 'Delhi, India', '1:00pm'),
+(1, 2, '10 January 2017', 'Kashmere Gate ,Delhi, India', '4:00pm'),
+(1, 3, '19 May 2017', 'Rajouri Garden ,Delhi, India', '5:00pm'),
+(1, 4, '5 July 2017', 'Kilash Colony ,Delhi, India', '2:00pm'),
+(1, 5, '10 January 2017', 'Lal Qila ,Delhi, India', '2:30pm');
 
 -- --------------------------------------------------------
 
@@ -52,14 +52,15 @@ INSERT INTO `extract` (`userid`, `emailno`, `date`, `address`, `time`) VALUES
 --
 
 CREATE TABLE `user` (
-  `userid` int(11) NOT NULL,
+  `userid` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `username` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Indexes for dumped tables
 --
-
+INSERT INTO `user` (`userid`,`username`) VALUES
+(1, 'Shubhi Lohani');
 --
 -- Indexes for table `extract`
 --
@@ -69,8 +70,7 @@ ALTER TABLE `extract`
 --
 -- Indexes for table `user`
 --
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`userid`);
+
 
 --
 -- AUTO_INCREMENT for dumped tables

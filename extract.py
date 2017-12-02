@@ -20,7 +20,7 @@ class Extractor(object):
     self.parsed_text = CommonRegex(self.contents)
    
   def findUserName(self):
-    return "Shubhi Lohani"
+    return "Ria Pant"
     
   def findDate(self):
     date = self.parsed_text.dates
