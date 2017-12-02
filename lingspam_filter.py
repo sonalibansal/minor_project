@@ -9,6 +9,8 @@ import re
 import datefinder
 from commonregex import CommonRegex
 import geograpy
+from extract import Extractor
+import pymysql
 #from postal.parser import parse_address
 
 
@@ -19,7 +21,6 @@ def make_Dictionary(train_dir):
         with open(mail) as m:
             for i,line in enumerate(m):
                 if i == 0:
-                    #line=line.lower()
                     words = line.split()
 		    
                     all_words += words
@@ -62,7 +63,7 @@ def extract_features(mail_dir):
 
 train_dir = 'travel-nontravel/train-mails'
 dictionary = make_Dictionary(train_dir)
-
+print dictionary
 # Prepare feature vectors per training mail and its labels
 
 train_labels = np.zeros(100)
@@ -79,7 +80,8 @@ model2.fit(train_matrix,train_labels)
 
 # Test the unseen mails for Spam
 
-#print model1
+print model1
+
 
 test_dir = 'travel-nontravel/test-mails'
 test_matrix = extract_features(test_dir)
@@ -110,9 +112,9 @@ def extract_features_for_single_doc(doc_path):
       
     return features_matrix
 
-test_doc = 'travel-nontravel/tr3.txt'
+test_doc = 'travel-nontravel/tr2.txt'
 doc_matrix = extract_features_for_single_doc(test_doc)
-
+extractor = Extractor()
 result3 = model1.predict(doc_matrix)
 if result3==0:
 	print "non travel"
@@ -120,18 +122,21 @@ else:
 	print "travel"
 print str(result3)+"\n"
 if result3==1:
-    f=open(test_doc, "r")
-    if f.mode == 'r': 
-      contents =f.read()
-      print contents
-      #matches = datefinder.find_dates(contents)
-      #for match in matches:
-          #print match
-      parsed_text = CommonRegex(contents)
-      print(parsed_text.times)
-      print(parsed_text.dates)
-      print(parsed_text.street_addresses)
-      print(parsed_text.btc_addresses)
+    extractor.setPath(test_doc)
+    user_name = extractor.findUserName()#emailid
+    date = extractor.findDate()
+    time = extractor.findTime()
+    address = extractor.findAddress()	
+    print date
+    print time
+    print address
+    con = pymysql.connect(host='localhost',database='minorproject', user='root',charset='utf8mb4')
+    cur = con.cursor()
+    sql_insert = "INSERT INTO extract(date,time,address) values (%s,%s,%s)"
+    cur.execute(sql_insert,(date,time,address))
+    con.commit()
+cur.close()
+con.close()
       
 
 
