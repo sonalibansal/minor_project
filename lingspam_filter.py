@@ -66,8 +66,8 @@ dictionary = make_Dictionary(train_dir)
 print dictionary
 # Prepare feature vectors per training mail and its labels
 
-train_labels = np.zeros(100)
-train_labels[50:99] = 1
+train_labels = np.zeros(160)
+train_labels[80:159] = 1
 train_matrix = extract_features(train_dir)
 
 # Training SVM and Naive bayes classifier and its variants
