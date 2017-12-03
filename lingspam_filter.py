@@ -112,7 +112,7 @@ def extract_features_for_single_doc(doc_path):
       
     return features_matrix
 
-test_doc = 'travel-nontravel/tr3.txt'
+test_doc = 'travel-nontravel/ntr2.txt'
 doc_matrix = extract_features_for_single_doc(test_doc)
 extractor = Extractor()
 result3 = model1.predict(doc_matrix)

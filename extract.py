@@ -33,12 +33,13 @@ class Extractor(object):
   def findAddress(self):
     address=[]      
     regexp1 = "venue[ ]?[:-][ ]?[a-zA-Z0-9,&. -]+"
-    if "venue" in self.contents:
+    if "Venue" in self.contents:
       address =re.findall(regexp1, self.contents.lower())
       address[0] = address[0][5:]
-      address[0].strip()
-      address[0] = s[1:]
-      address[0].strip();
+      addressString= address[0]
+      addressString.strip()
+      addressString = addressString[2:]
+      address[0] = addressString
     if not address:
       regexp = "[0-9]{1,3} .+, .+, [A-Z]{2} [0-9]{5}"
       #"[0-9]{1,3} .+, .+, [A-Z]{2} [0-9]{5}"
