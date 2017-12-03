@@ -1,9 +1,9 @@
-import MySQLdb
+import pymysql
 
 class DatabaseInteractor(object):
 	"""docstring for ClassName"""
 	def __init__(self):
-		self.db = MySQLdb.connect("localhost","root","123456","minorproject" )
+		self.db = pymysql.connect("localhost","root","","minorproject" )
 		self.curs=self.db.cursor()
 
 	def insert(self,user_name,date,time,address):
