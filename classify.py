@@ -63,6 +63,7 @@ def extract_features(mail_dir):
 
 train_dir = 'travel-nontravel/train-mails'
 dictionary = make_Dictionary(train_dir)
+print "\n The dictionary of words created using train mails is:\n\n"
 print dictionary
 # Prepare feature vectors per training mail and its labels
 
@@ -91,8 +92,9 @@ test_labels[29:59] = 1
 result1 = model1.predict(test_matrix)
 result2 = model2.predict(test_matrix)
 
-
+print "\nThe confusion matrix for SVM Model:\n"
 print confusion_matrix(test_labels,result1)
+print "\nThe confusion matrix for Multinomial Naive Bayes Model:\n"
 print confusion_matrix(test_labels,result2)
 
 def extract_features_for_single_doc(doc_path): 
@@ -117,9 +119,9 @@ doc_matrix = extract_features_for_single_doc(test_doc)
 extractor = Extractor()
 result3 = model1.predict(doc_matrix)
 if result3==0:
-	print "non travel"
+	print "\nThe email is categorised as non travel\n"
 else:
-	print "travel"
+	print "\nThe email is categorised as travel\n"
 print str(result3)+"\n"
 if result3==1:
 	extractor.setPath(test_doc)
@@ -127,11 +129,12 @@ if result3==1:
 	date = extractor.findDate()
 	time = extractor.findTime()
 	address = extractor.findAddress()	
-	print date
-	print time
-	print address
+	print "Date : "+date
+	print "Time : "+time
+	print "Address : "+address
 	db = DatabaseInteractor()
-	db.insert(user_name,date,time,address)  
+	db.insert(user_name,date,time,address)
+	print "\n Data has been inserted in the Database"
 
 
 
