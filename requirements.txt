@@ -55,7 +55,7 @@ django-storages==1.5.1
 django-toolbelt==0.0.1
 djangorestframework==3.5.3
 docutils==0.13.1
-ecdsa==0.13.1.dev0
+ecdsa==0.13.3
 ed25519ll==0.6
 entrypoints==0.2.3
 enum34==1.0.4
