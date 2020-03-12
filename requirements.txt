@@ -154,7 +154,7 @@ Pillow==2.5.1
 ply==3.6
 progressbar2==3.30.2
 prompt-toolkit==1.0.15
-psutil==3.0.1
+psutil==5.6.6
 psycopg2==2.7.1
 py==1.4.30
 py2exe==0.6.9
