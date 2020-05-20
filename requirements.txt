@@ -77,7 +77,7 @@ guiqwt==2.3.2
 gunicorn==19.7.1
 h5py==2.5.0
 html5lib==0.999999999
-httplib2==0.10.3
+httplib2==0.18.0
 idna==2.1.dev1
 igraph==0.1.11
 ipaddress==1.0.7
