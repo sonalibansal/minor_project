@@ -53,7 +53,7 @@ django-mptt==0.8.7
 django-stdimage==2.4.1
 django-storages==1.5.1
 django-toolbelt==0.0.1
-djangorestframework==3.5.3
+djangorestframework==3.11.2
 docutils==0.13.1
 ecdsa==0.13.1.dev0
 ed25519ll==0.6
