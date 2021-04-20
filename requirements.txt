@@ -156,7 +156,7 @@ progressbar2==3.30.2
 prompt-toolkit==1.0.15
 psutil==3.0.1
 psycopg2==2.7.1
-py==1.4.30
+py==1.10.0
 py2exe==0.6.9
 pyasn1==0.2.3
 pyasn1-modules==0.0.8
