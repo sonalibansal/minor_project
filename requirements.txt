@@ -195,7 +195,7 @@ reportlab==3.2.0
 requests==2.7.0
 requests-oauthlib==0.6.1
 rope==0.10.2
-rsa==3.4.2
+rsa==4.7
 s3transfer==0.1.10
 sampy==1.2.1
 scandir==1.1.1.dev7
