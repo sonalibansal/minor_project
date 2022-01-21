@@ -84,7 +84,7 @@ ipaddress==1.0.7
 ipdb==0.8.1
 ipdbplugin==1.4.2
 ipykernel==4.6.1
-ipython==4.2.0
+ipython==7.16.3
 ipython-genutils==0.1.0
 ipywidgets==7.0.1
 jaraco.apt==1.0
