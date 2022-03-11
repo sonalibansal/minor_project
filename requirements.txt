@@ -150,7 +150,7 @@ pathlib2==2.1.0
 patsy==0.3.0
 pep8==1.6.2
 pickleshare==0.7.2
-Pillow==2.5.1
+Pillow==9.0.1
 ply==3.6
 progressbar2==3.30.2
 prompt-toolkit==1.0.15
