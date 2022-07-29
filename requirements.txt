@@ -202,7 +202,7 @@ scandir==1.1.1.dev7
 scikit-learn==0.17.1
 scipy==0.15.1
 scp==0.10.2
-Scrapy==1.1.0
+Scrapy==2.6.2
 service-identity==16.0.0
 simplegeneric==0.8.1
 singledispatch==3.4.0.3
