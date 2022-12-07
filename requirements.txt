@@ -23,7 +23,7 @@ Bottleneck==1.0.0
 CacheControl==0.11.5
 cchardet==0.3.5
 cdecimal==2.3
-certifi==2015.4.28
+certifi==2022.12.7
 cffi==1.1.2
 chardet==2.3.0
 cobalt==0.1.9
